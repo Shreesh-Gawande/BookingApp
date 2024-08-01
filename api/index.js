@@ -30,6 +30,12 @@ app.use("/api/users",userroutes);
 app.use("/api/hotels",hotelroutes);
 app.use("/api/rooms",roomsroutes);
 
+app.use((err,res,next)=>{
+  const errorStatus=err.status || 500
+  const errorMessage=err.message || "Something went wrong"
+  return res.status(errorStatus).json(errorMessage);
+})
+
 app.listen(8800, ()=>{
     connect()
     console.log("Server started at port 8800")
