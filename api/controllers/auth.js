@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
+
 import User from '../models/User.js';
 import { setUser } from '../utils/verifyToken.js';
 
 export const register = async (req, res, next) => {
-    const { username, email, password, phone, city, country } = req.body;
+    const { username, email, password, phone, city, country,isAdmin } = req.body;
     await User.create({
         username,
         email,
@@ -11,6 +11,7 @@ export const register = async (req, res, next) => {
         phone,
         city,
         country,
+        isAdmin
     });
     return res.send("New User Created");
 };
