@@ -11,6 +11,9 @@
     max-width: 1024px;
     margin: 20px 0px 100px 0px;
 }
+.headerCointaner listmode{
+    margin: 20px 0px 0px 0px;
+}
 
 .headerList {
     display: flex;
@@ -76,6 +79,7 @@ cursor: pointer;
 .date{
     position:absolute;
     top: 50px;
+    z-index: 2;
 }
 .options{
     position: absolute;
@@ -84,6 +88,7 @@ cursor: pointer;
     color: gray;
     border-radius: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 2;
 }
 .optionItem{
     width: 200px;

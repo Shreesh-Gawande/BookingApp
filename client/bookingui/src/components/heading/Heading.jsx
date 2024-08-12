@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import { format } from 'date-fns';
 
-function Heading() {
+function Heading({type}) {
 const [openDate,setOpenDate]=useState(false)
 
 
@@ -37,7 +37,7 @@ const habdleOption =(name,operation)=>{
 
   return (
     <div className='header'>
-      <div className="headerCointaner">
+      <div className={type === "list" ? "headerCointaner listmode" : "headerCointaner" }>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} /> 
@@ -60,7 +60,9 @@ const habdleOption =(name,operation)=>{
             <span>Airport Taxis</span>
           </div>
         </div>
-        <h1 className="headerTitle">A lifetime of discounts? It's Genius</h1>
+       { type !== "list"&&
+        <>
+         <h1 className="headerTitle">A lifetime of discounts? It's Genius</h1>
         <p className="headerDesc">
           Get Rewards for Your Travel- unlock instant savings of 10% or more
           with a free BoockNStay account
@@ -120,7 +122,7 @@ const habdleOption =(name,operation)=>{
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>
           </div>
-        </div>
+        </div></>}
       </div>
     </div>
   );
