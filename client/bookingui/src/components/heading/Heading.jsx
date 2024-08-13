@@ -35,6 +35,10 @@ const habdleOption =(name,operation)=>{
     setDateRange(ranges.selection);
   };
 
+  const handleSearch=()=>{
+    
+  }
+
   return (
     <div className='header'>
       <div className={type === "list" ? "headerCointaner listmode" : "headerCointaner" }>
@@ -120,7 +124,7 @@ const habdleOption =(name,operation)=>{
             </div>}
           </div>
           <div className="headerSearchItem">
-            <button className="headerBtn">Search</button>
+            <button className="headerBtn" onClick={handleSearch}>Search</button>
           </div>
         </div></>}
       </div>
