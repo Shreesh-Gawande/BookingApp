@@ -28,7 +28,7 @@ function SearchItem() {
         <button>8.9</button>
       </div>
       <div className="siDetailTexts">
-        <span className="siPrice">Rs2300</span>
+        <span className="siPrice">Rs 2300</span>
         <span className="siTaxOp">Includes taxes and fees</span>
         <button className="siCheckButton">See availablity</button>
       </div>

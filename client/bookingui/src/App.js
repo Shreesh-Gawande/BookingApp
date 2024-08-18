@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import Home from "./pages/home/Home.jsx";
 import List from "./pages/list/List.jsx";
-import Hotel from "./pages/hotel/Hotel.js";
+import Hotel from "./pages/hotel/Hotel.jsx";
 
 const App = () => {
   return (
