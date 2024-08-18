@@ -12,6 +12,7 @@
 .listSearch{
     flex: 1;
     background-color: #febb02;
+    height: 500px;
     padding: 10px;
     border-radius: 10px;
     position: sticky;

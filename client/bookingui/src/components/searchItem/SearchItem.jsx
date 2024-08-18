@@ -9,6 +9,29 @@ function SearchItem() {
      className="searchImg" />
      <div className="siDesc">
         <h1 className="siTitle">Tower Streets Apartment</h1>
+        <span className="siDistance">%00m from center</span>
+        <span className="siTaxiOp">Free Airport Taxi</span>
+        <span className="siSubtitle">
+            Studio Apartment with Air conditioning
+        </span>
+        <span className="siFeatures">
+            Entire Studio 1bathroom full bed
+        </span>
+        <span className="siCancelOp">Free Cancelation</span>
+        <span className="siCancelOpSubtitle">
+            You can cancel later, so lock in this great price today!
+        </span>
+     </div>
+     <div className="siDetails">
+      <div className="siRating">
+        <span>Excellent</span>
+        <button>8.9</button>
+      </div>
+      <div className="siDetailTexts">
+        <span className="siPrice">Rs2300</span>
+        <span className="siTaxOp">Includes taxes and fees</span>
+        <button className="siCheckButton">See availablity</button>
+      </div>
      </div>
     </div>
   )
