@@ -29,6 +29,10 @@ const HotelSchema =new mongoose.Schema({
         type:String,
         required:true,
     },
+    desc: {
+        type: String,
+        required: true,
+      },
 
     rating:{
         type:Number,
@@ -43,10 +47,10 @@ const HotelSchema =new mongoose.Schema({
         type:Number,
         required:true,
     },
-    fratured:{
-        type:Boolean,
-        required:false,
-    },
+    featured: {
+        type: Boolean,
+        default: false,
+      },
 
 })
 
