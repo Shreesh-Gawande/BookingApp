@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './heading.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,7 @@ import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 import { format } from 'date-fns';
+import { SearchContext } from '../../context/SearchContext';
 
 function Heading({type}) {
   const [openDate, setOpenDate] = useState(false);
@@ -33,11 +34,15 @@ function Heading({type}) {
 
   const handleSelect = (ranges) => {
     setDateRange(ranges.selection);
+
   };
 
   const navigate = useNavigate();
 
+  const {dispatch}=useContext(SearchContext)
+
   const handleSearch = () => {
+    dispatch({type: "NEW_SEARCH",payload:{destination,dateRange,options}});
     navigate("/hotels", { state: { destination, dateRange, options } });
   };
 

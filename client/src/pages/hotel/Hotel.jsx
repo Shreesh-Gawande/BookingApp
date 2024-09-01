@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./hotel.css"
 import Navbar from '../../components/navbar/Navbar'
 import Heading from '../../components/heading/Heading'
@@ -8,20 +8,29 @@ import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
 import useFetch from '../../hooks/useFetch'
 import { useLocation } from 'react-router-dom'
+import { SearchContext } from '../../context/SearchContext'
 
 function Hotel() {
     const location = useLocation();
-    console.log(location)
     const id =location.pathname.split("/")[2];
 
     const [slideNumber,setSlideNumber]=useState(0);
     const [open,setOpen]=useState(false);
 
     const {data, loading, error}=useFetch(`http://localhost:8800/api/hotels/find/${id}`)
-    console.log("ID:", id);
+    
 
-    console.log(data)
+    const {dateRange}=useContext(SearchContext);
+    console.log(dateRange)
 
+    const MILISECONDS_PER_DAY =100*60*60*24;
+    function dayDifference(date1,date2){
+        const timeDiff= Math.abs(date2.getTime()-date1.getTime());
+        const diffDays =Math.ceil(timeDiff / MILISECONDS_PER_DAY);
+        return diffDays;
+    }
+   console.log(dayDifference(dateRange[0].endDate , dateRange[0].startDate));
+   
   
 const handleOpen =(i)=>{
     setSlideNumber(i);
