@@ -20,16 +20,26 @@ function Hotel() {
     const {data, loading, error}=useFetch(`http://localhost:8800/api/hotels/find/${id}`)
     
 
-    const {dateRange}=useContext(SearchContext);
-    console.log(dateRange)
+    const {dateRange,options}=useContext(SearchContext);
+    
+console.log(dateRange);        
 
-    const MILISECONDS_PER_DAY =100*60*60*24;
-    function dayDifference(date1,date2){
-        const timeDiff= Math.abs(date2.getTime()-date1.getTime());
-        const diffDays =Math.ceil(timeDiff / MILISECONDS_PER_DAY);
-        return diffDays;
+
+const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+function dayDifference(date1, date2) {
+    if (!date1 || !date2) {
+        console.error('One or both dates are undefined:', { date1, date2 });
+        return null; 
     }
-   console.log(dayDifference(dateRange[0].endDate , dateRange[0].startDate));
+
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+}
+
+
+   const days=(dayDifference(dateRange.endDate , dateRange.startDate));
    
   
 const handleOpen =(i)=>{
@@ -88,11 +98,11 @@ const handleMove = (direction)=>{
                      </p>
                      </div>
                 <div className="hotelDetailsPrice">
-                    <h1>Perfect for a long night stay!</h1>
+                    <h1>Perfect for a {days} night stay!</h1>
                     <span>Located in the real heart of mumbai this property has
                         a excellent location score of 9.8  </span>
                         <h2>
-                            <b>Rs 945</b>((9 nights))
+                            <b>Rs {days * data.cheapestPrice * options.room}</b>  ({days}nights)
                         </h2>
                         <button>Reserve or Book Now !</button>
                 </div>
