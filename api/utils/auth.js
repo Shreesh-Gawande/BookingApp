@@ -5,7 +5,7 @@ import { getUser } from './verifyToken.js';
 export const verifyAdmin = (req, res, next) => {
     restrictToLogesInUsersOnly(req, res,next, () => {
         if (req.user.isAdmin) {
-            next(); // Allow the request to proceed if the user is an admin
+            next(); 
         } else {
             return next(createError(403, "Access denied. Admins only."));
         }

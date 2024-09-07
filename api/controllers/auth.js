@@ -19,7 +19,8 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username, password });
-    if (!user) return res.send("Invalid email or password");
+    if (!user) return res.status(404).send("Invalid email or password");
+
 
     
    const token= setUser( user);

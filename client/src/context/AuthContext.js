@@ -1,41 +1,74 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 const INITIAL_STATE = {
-  city: undefined,
-  dateRange: [],
-  options: {
-    adult: undefined,
-    children: undefined,
-    room: undefined,
-  },
+  users: (() => {
+    const storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+      try {
+        return JSON.parse(storedUsers); 
+      } catch (error) {
+        console.error("Invalid JSON data in localStorage for 'users'", error);
+        return null; 
+      }
+    }
+    return null; 
+  })(),
+  loading: false,
+  error: null,
 };
 
-export const SearchContext = createContext(INITIAL_STATE);
 
-const SearchReducer = (state, action) => {
+export const AuthContext = createContext(INITIAL_STATE);
+
+const AuthReducer = (state, action) => {
   switch (action.type) {
-    case "NEW_SEARCH":
-      return action.payload;
-    case "RESET_SEARCH":
-      return INITIAL_STATE;
+    case "LOGIN_START":
+      return {
+        users: null,  
+        loading: true,
+        error: null,
+      };
+    case "LOGIN_SUCCESS":
+      return {
+        users: action.payload,  
+        loading: false,
+        error: null,
+      };
+    case "LOGIN_FAILURE":
+      return {
+        users: null,  
+        loading: false,
+        error: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        users: null, 
+        loading: false,
+        error: null,
+      };
     default:
       return state;
   }
 };
 
-export const SearchContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+
+  useEffect(() => {
+      localStorage.setItem("users", JSON.stringify(state.users));
+  }, [state.users]);
+  
 
   return (
-    <SearchContext.Provider
+    <AuthContext.Provider
       value={{
-        city: state.city,
-        dateRange: state.dateRange,
-        options: state.options,
+        users: state.users,  
+        loading: state.loading,
+        error: state.error,
         dispatch,
       }}
     >
       {children}
-    </SearchContext.Provider>
+    </AuthContext.Provider>
   );
 };
