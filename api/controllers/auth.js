@@ -21,9 +21,11 @@ export const login = async (req, res, next) => {
     const user = await User.findOne({ username, password });
     if (!user) return res.status(404).send("Invalid email or password");
 
-
-    
    const token= setUser( user);
     res.cookie("uid", token);
-    return res.send("User is logged in");
+    return  res.status(200).json({
+        id: user._id,
+        username: user.username,
+        createdAt: user.createdAt,
+      });
 };

@@ -7,8 +7,9 @@ import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } f
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
 import useFetch from '../../hooks/useFetch'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../context/SearchContext'
+import { AuthContext } from '../../context/AuthContext'
 
 function Hotel() {
     const location = useLocation();
@@ -16,8 +17,11 @@ function Hotel() {
 
     const [slideNumber,setSlideNumber]=useState(0);
     const [open,setOpen]=useState(false);
+    const [openModel,setOpenModel]=useState(false);
 
     const {data, loading, error}=useFetch(`http://localhost:8800/api/hotels/find/${id}`)
+    const {user}=useContext(AuthContext);
+    const navigate=useNavigate();
     
 
     const {dateRange,options}=useContext(SearchContext);
@@ -56,6 +60,14 @@ const handleMove = (direction)=>{
     }
     setSlideNumber(newSlideNumber)
     console.log(newSlideNumber)
+}
+
+const handleClick = ()=>{
+  if(user){
+  setOpenModel(true);
+  }else{
+    navigate("/login");
+  }
 }
     
   return (
@@ -104,7 +116,7 @@ const handleMove = (direction)=>{
                         <h2>
                             <b>Rs {days * data.cheapestPrice * options.room}</b>  ({days}nights)
                         </h2>
-                        <button>Reserve or Book Now !</button>
+                        <button onClick={handleClick}>Reserve or Book Now !</button>
                 </div>
             </div>
         </div>
