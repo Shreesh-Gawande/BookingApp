@@ -1,3 +1,4 @@
+import "./reserve.css"
 import {  faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useState } from 'react'
@@ -56,13 +57,14 @@ function Reserve({setOpen, hotelId}) {
                     <div className="rMax">Max People: <b>{item.maxPeople}</b></div>
                     <div className="rPrice">{item.price}</div>
                 </div>
+                <div className="rselectRooms">
                 {item.roomNumbers.map((roomNumber)=>(
                     <div className="room">
                     <label>{roomNumber.number}</label>
                     <input type='checkbox' value={roomNumber._id} onChange={handelSelect} />
                     </div>
                 ))}
-                
+                </div>
             </div>
         ))}
         <button onClick={handleClick} className='rButton'>Reserve Now!</button>
