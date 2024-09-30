@@ -10,6 +10,7 @@ import useFetch from '../../hooks/useFetch'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../context/SearchContext'
 import { AuthContext } from '../../context/AuthContext'
+import Reserve from '../../components/reserve/Reserve'
 
 function Hotel() {
     const location = useLocation();
@@ -20,13 +21,13 @@ function Hotel() {
     const [openModel,setOpenModel]=useState(false);
 
     const {data, loading, error}=useFetch(`http://localhost:8800/api/hotels/find/${id}`)
-    const {user}=useContext(AuthContext);
+    const {users}=useContext(AuthContext);
     const navigate=useNavigate();
     
 
     const {dateRange,options}=useContext(SearchContext);
     
-console.log(dateRange);        
+       
 
 
 const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -63,7 +64,8 @@ const handleMove = (direction)=>{
 }
 
 const handleClick = ()=>{
-  if(user){
+    console.log(users);
+  if(users){
   setOpenModel(true);
   }else{
     navigate("/login");
@@ -123,6 +125,7 @@ const handleClick = ()=>{
         <MailList/>
         <Footer/>
       </div>)}
+      {openModel && <Reserve setOpen={setOpenModel} hotelId={id} /> }
     </div>
   )
 }
