@@ -13,7 +13,7 @@ export const register = async (req, res, next) => {
         country,
         isAdmin
     });
-    return res.send("New User Created");
+    return res.redirect("/");
 };
 
 export const login = async (req, res, next) => {

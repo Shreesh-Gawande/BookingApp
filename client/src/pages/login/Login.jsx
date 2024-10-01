@@ -11,10 +11,7 @@ const Login = () => {
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
-  
-
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -26,34 +23,43 @@ const Login = () => {
     try {
       const res = await axios.post("http://localhost:8800/api/auth/login", credentials); 
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      navigate("/")
+      navigate("/");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
 
-
   return (
     <div className="login">
-      <div className="lContainer">
-        <input
-          type="text"
-          placeholder="username"
-          id="username"
-          onChange={handleChange}
-          className="lInput"
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-          className="lInput"
-        />
-        <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
-        </button>
-        {error && <span>{error.message}</span>}
+      <div className="loginContainer">
+        <div className="loginForm">
+          <h1 className="loginHeading">Welcome Back</h1>
+          <p className="loginDesc">Sign in to continue to your dashboard</p>
+          
+          <input
+            type="text"
+            placeholder="Username"
+            id="username"
+            onChange={handleChange}
+            className="loginInput"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            onChange={handleChange}
+            className="loginInput"
+          />
+          
+          <button disabled={loading} onClick={handleClick} className="loginButton">
+            {loading ? "Signing In..." : "Login"}
+          </button>
+          {error && <span className="errorMessage">{error.message}</span>}
+          
+        </div>
+        <div className="loginImageContainer">
+          <img src="/road.png" alt="Login Visual" className="loginImage" />
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,107 @@
-.login{
-    
+/* General page styling with a blue gradient background */
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Container styling */
+.loginContainer {
+    display: flex;
+    width: 70%;
+    height: 80%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Form section */
+.loginForm {
+    width: 50%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Form heading with darker blue color */
+.loginHeading {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1d3557;
+    margin-bottom: 20px;
+}
+
+/* Form description with lighter blue shade */
+.loginDesc {
+    font-size: 16px;
+    color: #457b9d;
+    margin-bottom: 30px;
+}
+
+/* Input styling with blue borders */
+.loginInput {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #a8dadc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.loginInput:focus {
+    border-color: #457b9d;
+}
+
+/* Button styling with blue background and hover effect */
+.loginButton {
+    width: 100%;
+    padding: 15px;
+    background-color: #1d3557;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.loginButton:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.loginButton:hover {
+    background-color: #457b9d;
+}
+
+/* Error message styling */
+.errorMessage {
+    color: #e63946;
+    margin-top: 10px;
+}
+
+/* Image container styling */
+.loginImageContainer {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1faee;
+    padding: 30px;
+}
+
+.loginImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
