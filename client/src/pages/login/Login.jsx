@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 
@@ -34,7 +34,7 @@ const Login = () => {
       <div className="loginContainer">
         <div className="loginForm">
           <h1 className="loginHeading">Welcome Back</h1>
-          <p className="loginDesc">Sign in to continue to your dashboard</p>
+          <p className="loginDesc">Do not have a account yet? <Link to="/signin"><span>Signin</span></Link></p>
           
           <input
             type="text"
